@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -46,7 +47,8 @@ import com.decloudius.composetraining.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel
+    viewModel: LoginViewModel,
+    onBiometricClick: () -> Unit = {}
 ) {
     // Collect states from the ViewModel as Compose State objects.
     // Every time the ViewModel updates these values, the UI recomposes automatically.
@@ -63,7 +65,8 @@ fun LoginScreen(
         error = error,
         onPinChange = viewModel::onPinChange,
         onLoginClick = viewModel::onLoginClick,
-        onCreatePinClick = viewModel::onCreatePinClick
+        onCreatePinClick = viewModel::onCreatePinClick,
+        onBiometricClick = onBiometricClick
     )
 }
 
@@ -80,7 +83,8 @@ fun LoginScreenContent(
     error: String?,
     onPinChange: (String) -> Unit,
     onLoginClick: () -> Unit,
-    onCreatePinClick: () -> Unit
+    onCreatePinClick: () -> Unit,
+    onBiometricClick: () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -161,6 +165,15 @@ fun LoginScreenContent(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(stringResource(R.string.login))
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                TextButton(
+                    onClick = onBiometricClick,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(stringResource(R.string.use_biometric))
                 }
             } else {
                 // First-time user: show Save PIN button instead.

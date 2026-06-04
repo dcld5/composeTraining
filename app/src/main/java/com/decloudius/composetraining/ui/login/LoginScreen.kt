@@ -1,5 +1,6 @@
 package com.decloudius.composetraining.ui.login
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -29,6 +31,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.decloudius.composetraining.R
+import com.decloudius.composetraining.ui.theme.ComposeTrainingTheme
 
 /**
  * LoginScreen is a Jetpack Compose function that describes WHAT the login UI looks like.
@@ -206,10 +209,12 @@ fun PreviewLoginScreenFirstTime() {
 }
 
 // Another preview with different fake data so you can see the returning-user state.
-@Preview(showBackground = true, name = "Returning user")
+@Preview(
+    showBackground = true,
+    name = "Returning user")
 @Composable
 fun PreviewLoginScreenReturningUser() {
-    MaterialTheme {
+    ComposeTrainingTheme (darkTheme = true) {
         LoginScreenContent(
             pin = "123456",
             isPinSet = true,

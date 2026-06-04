@@ -94,15 +94,6 @@ fun DashboardScreen(
                         text = stringResource(R.string.app_name),
                         style = MaterialTheme.typography.titleLarge
                     )
-                },
-                actions = {
-                    // Logout icon in the top-right corner.
-                    IconButton(onClick = onLogout) {
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(R.string.logout)
-                        )
-                    }
                 }
             )
         },
@@ -156,7 +147,9 @@ fun DashboardScreen(
                     themeMode = themeMode,
                     onThemeChange = dashboardViewModel::setThemeMode,
                     languageCode = languageCode,
-                    onLanguageChange = dashboardViewModel::setLanguage
+                    onLanguageChange = dashboardViewModel::setLanguage,
+                    onChangePin = dashboardViewModel::changePin,
+                    onResetPin = dashboardViewModel::resetPin
                 )
             }
         }

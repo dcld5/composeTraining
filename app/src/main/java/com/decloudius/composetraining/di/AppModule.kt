@@ -50,7 +50,7 @@ val appModule = module {
 
     // ViewModels - Koin automatically injects the repository arguments.
     viewModel { LoginViewModel(get()) }
-    viewModel { DashboardViewModel(get(), get(), get()) }
+    viewModel { DashboardViewModel(get(), get(), get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
 }

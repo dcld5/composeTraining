@@ -87,7 +87,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
             // LazyVerticalGrid is like a grid RecyclerView but much simpler.
             // We pass a key so Compose knows which item is which when the list changes.
             LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
+                columns = GridCells.Fixed(3),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.weight(1f)

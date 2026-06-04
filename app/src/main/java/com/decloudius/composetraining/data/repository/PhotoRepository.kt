@@ -28,6 +28,16 @@ class PhotoRepository(
         return photoDao.insertPhoto(entity)
     }
 
+    // can use this to save a photo with a custom filename
+    suspend fun savePhoto(bitmap: Bitmap, fileName: String): Long {
+        val file = File(context.filesDir, fileName)
+        FileOutputStream(file).use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+        }
+        val entity = PhotoEntity(filePath = file.absolutePath)
+        return photoDao.insertPhoto(entity)
+    }
+
     fun getAllPhotos(): Flow<List<Photo>> {
         return photoDao.getAllPhotos().map { list ->
             list.map { entity ->

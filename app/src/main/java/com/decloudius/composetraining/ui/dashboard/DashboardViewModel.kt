@@ -3,6 +3,7 @@ package com.decloudius.composetraining.ui.dashboard
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.decloudius.composetraining.data.local.prefs.AuthPreferences
 import com.decloudius.composetraining.data.local.prefs.SettingsPreferences
 import com.decloudius.composetraining.data.repository.PhotoRepository
 import com.decloudius.composetraining.ui.theme.ThemeManager
@@ -16,7 +17,8 @@ import kotlinx.coroutines.launch
 class DashboardViewModel(
     private val photoRepository: PhotoRepository,
     private val themeManager: ThemeManager,
-    private val settingsPreferences: SettingsPreferences
+    private val settingsPreferences: SettingsPreferences,
+    private val authPreferences: AuthPreferences
 ) : ViewModel() {
 
     private val _previewBitmap = MutableStateFlow<Bitmap?>(null)
@@ -57,5 +59,13 @@ class DashboardViewModel(
         settingsPreferences.setLanguage(code)
         _languageCode.value = code
         _recreateNeeded.tryEmit(true)
+    }
+
+    fun changePin(pin: Int) {
+        authPreferences.setPin(pin.toString())
+    }
+
+    fun resetPin() {
+        authPreferences.clear()
     }
 }

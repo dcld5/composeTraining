@@ -35,7 +35,7 @@ val appModule = module {
     single { ProfileRepository(get()) }
 
     viewModel { LoginViewModel(get()) }
-    viewModel { DashboardViewModel(get(), get(), get()) }
+    viewModel { DashboardViewModel(get(), get(), get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
 }

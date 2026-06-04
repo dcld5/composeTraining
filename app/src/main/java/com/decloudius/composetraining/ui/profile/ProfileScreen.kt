@@ -1,6 +1,7 @@
 package com.decloudius.composetraining.ui.profile
 
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -100,4 +101,33 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = { galleryLauncher.launch("image
+        Button(onClick = { galleryLauncher.launch("image/*") }) {
+            Text(stringResource(R.string.pick_image))
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        OutlinedTextField(
+            value = name,
+            onValueChange = viewModel::onNameChange,
+            label = { Text(stringResource(R.string.name)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = viewModel::saveProfile,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.save))
+        }
+
+        if (saved) {
+            Toast.makeText(context,
+                "Saved!",
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+}

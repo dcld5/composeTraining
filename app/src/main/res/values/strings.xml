@@ -27,4 +27,6 @@
     <string name="pick_image">Pick Image</string>
     <string name="logout">Logout</string>
     <string name="delete">Delete</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="reset_pin">Reset PIN</string>
 </resources>

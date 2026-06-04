@@ -104,6 +104,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
 
     // Review dialog — shows when the user taps a grid item.
     // It uses the same AlertDialog pattern as CameraDialog for consistency.
+    // selectedPhoto.let is used to ensure the dialog is only shown if selectedPhoto is not null.
     selectedPhoto?.let { photo ->
         AlertDialog(
             onDismissRequest = { selectedPhoto = null },

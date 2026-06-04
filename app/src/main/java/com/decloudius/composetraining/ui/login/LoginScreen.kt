@@ -166,15 +166,6 @@ fun LoginScreenContent(
                 ) {
                     Text(stringResource(R.string.login))
                 }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                TextButton(
-                    onClick = onBiometricClick,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(stringResource(R.string.use_biometric))
-                }
             } else {
                 // First-time user: show Save PIN button instead.
                 Button(

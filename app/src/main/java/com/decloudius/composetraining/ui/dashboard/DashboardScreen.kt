@@ -39,46 +39,31 @@ import com.decloudius.composetraining.ui.settings.SettingsScreen
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-/**
- * DashboardScreen is the main container for the three tabs.
- *
- * KEY COMPOSE CONCEPTS SHOWN HERE:
- * - Scaffold: gives you slots for topBar, bottomBar, FAB, and main content with safe padding.
- * - HorizontalPager: swipe left/right to switch pages; we sync it with the bottom nav.
- * - NavigationBar (BottomNavigation in old Material): clickable tabs at the bottom.
- * - rememberLauncherForActivityResult: Jetpack Compose way to start an external Intent
- *   (here the system camera) and receive a result inside a Composable.
- */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun DashboardScreen(
     dashboardViewModel: DashboardViewModel,
     onLogout: () -> Unit
 ) {
-    // Pager state remembers which page is currently visible (0, 1, or 2).
+
     val pagerState = rememberPagerState(pageCount = { 3 })
     val scope = rememberCoroutineScope()
 
-    // Observe the captured photo preview. If non-null, we show the save/cancel dialog.
     val previewBitmap by dashboardViewModel.previewBitmap.collectAsState()
 
-    // Observe theme and language so we can pass them down to Settings.
     val themeMode by dashboardViewModel.themeMode.collectAsState()
     val languageCode by dashboardViewModel.languageCode.collectAsState()
 
-    // This launcher opens the system camera app and returns a small preview Bitmap.
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
     ) { bitmap ->
-        // If the user actually took a photo, send it to the ViewModel.
+
         bitmap?.let { dashboardViewModel.onPhotoTaken(it) }
     }
 
-    // We create child ViewModels here (they are scoped to the Activity).
     val homeViewModel: HomeViewModel = koinViewModel()
     val profileViewModel: ProfileViewModel = koinViewModel()
 
-    // Labels and icons for the bottom navigation.
     val navItems = listOf(
         Triple(stringResource(R.string.home), Icons.Default.Home, 0),
         Triple(stringResource(R.string.profile), Icons.Default.Person, 1),
@@ -86,7 +71,7 @@ fun DashboardScreen(
     )
 
     Scaffold(
-        // --- TOP BAR (header) ---
+
         topBar = {
             TopAppBar(
                 title = {
@@ -96,7 +81,7 @@ fun DashboardScreen(
                     )
                 },
                 actions = {
-                    // Logout icon in the top-right corner.
+
                     IconButton(onClick = onLogout) {
                         Icon(
                             imageVector = Icons.Filled.Close,
@@ -106,15 +91,15 @@ fun DashboardScreen(
                 }
             )
         },
-        // --- BOTTOM BAR (navigation) ---
+
         bottomBar = {
             NavigationBar {
                 navItems.forEach { (label, icon, index) ->
                     NavigationBarItem(
-                        // Selected if the current pager page matches this index.
+
                         selected = pagerState.currentPage == index,
                         onClick = {
-                            // Launch a coroutine to animate the page change.
+
                             scope.launch {
                                 pagerState.animateScrollToPage(index)
                             }
@@ -125,8 +110,7 @@ fun DashboardScreen(
                 }
             }
         },
-        // --- FLOATING ACTION BUTTON ---
-        // Only show the camera FAB when the user is on the Home tab (page 0).
+
         floatingActionButton = {
             if (pagerState.currentPage == 0) {
                 FloatingActionButton(
@@ -140,9 +124,7 @@ fun DashboardScreen(
             }
         }
     ) { innerPadding ->
-        // --- MAIN CONTENT (pager) ---
-        // HorizontalPager lets the user swipe between pages.
-        // We sync its state with the bottom nav above.
+
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
@@ -161,8 +143,6 @@ fun DashboardScreen(
             }
         }
 
-        // --- CAMERA PREVIEW DIALOG ---
-        // If a photo was just taken, show it in a dialog with Save and Cancel.
         previewBitmap?.let { bitmap ->
             CameraDialog(
                 bitmap = bitmap,

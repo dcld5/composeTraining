@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-/** Light color scheme using our custom palette. */
 private val LightColorScheme = lightColorScheme(
     primary = PrimaryLight,
     onPrimary = OnPrimaryLight,
@@ -41,7 +40,6 @@ private val LightColorScheme = lightColorScheme(
     onSurfaceVariant = OnSurfaceVariantLight
 )
 
-/** Dark color scheme using our custom palette. */
 private val DarkColorScheme = darkColorScheme(
     primary = PrimaryDark,
     onPrimary = OnPrimaryDark,
@@ -67,14 +65,6 @@ private val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = OnSurfaceVariantDark
 )
 
-/**
- * ComposeTrainingTheme is the ROOT of all Compose UI in our app.
- * Everything inside this Composable automatically gets our colors, fonts, and shapes.
- *
- * @param darkTheme      true = force dark mode, false = force light mode.
- * @param dynamicColor   true = use Android 12+ wallpaper-based colors (optional).
- * @param content        the actual UI tree (screens, buttons, texts).
- */
 @Composable
 fun ComposeTrainingTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -82,7 +72,7 @@ fun ComposeTrainingTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        // Android 12+ can extract colors from the user's wallpaper (dynamic theming).
+
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
@@ -91,7 +81,6 @@ fun ComposeTrainingTheme(
         else -> LightColorScheme
     }
 
-    // This block tweaks the system status bar to match our theme.
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

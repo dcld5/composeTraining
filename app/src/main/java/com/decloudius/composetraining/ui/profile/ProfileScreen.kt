@@ -34,11 +34,6 @@ import coil.compose.AsyncImage
 import com.decloudius.composetraining.R
 import java.io.File
 
-/**
- * ProfileScreen lets the user edit their display name and profile picture.
- * The image is picked from the gallery, copied into the app's private storage,
- * and the path is saved in Room via the ViewModel.
- */
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel) {
     val name by viewModel.name.collectAsState()
@@ -46,12 +41,11 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
     val saved by viewModel.saved.collectAsState()
     val context = LocalContext.current
 
-    // Launcher that opens the system photo picker (gallery).
     val galleryLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         if (uri != null) {
-            // Copy the picked image into our app's private files so it survives reboots.
+
             val input = context.contentResolver.openInputStream(uri)
             val file = File(context.filesDir, "profile_${System.currentTimeMillis()}.jpg")
             input?.use { inp ->
@@ -77,7 +71,6 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Profile image (circle) or placeholder.
         if (imagePath != null) {
             AsyncImage(
                 model = File(imagePath!!),
@@ -107,40 +100,4 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Button to pick an image from the gallery.
-        Button(onClick = { galleryLauncher.launch("image/*") }) {
-            Text(stringResource(R.string.pick_image))
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Name text field.
-        OutlinedTextField(
-            value = name,
-            onValueChange = viewModel::onNameChange,
-            label = { Text(stringResource(R.string.name)) },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Save button.
-        Button(
-            onClick = viewModel::saveProfile,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(stringResource(R.string.save))
-        }
-
-        // Little confirmation text after saving.
-        if (saved) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Saved!",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodyLarge
-            )
-        }
-    }
-}
+        Button(onClick = { galleryLauncher.launch("image

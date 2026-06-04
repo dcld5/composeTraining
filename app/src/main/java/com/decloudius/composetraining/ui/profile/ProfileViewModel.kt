@@ -9,10 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ProfileViewModel manages the single user profile row.
- * It reads the existing profile from Room and exposes name + imagePath as Compose states.
- */
 class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
 
     private val _name = MutableStateFlow("")
@@ -25,7 +21,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewM
     val saved: StateFlow<Boolean> = _saved.asStateFlow()
 
     init {
-        // When the ViewModel starts, collect the existing profile from Room.
+
         viewModelScope.launch {
             profileRepository.getProfile().collect { profile ->
                 _name.value = profile?.name ?: ""

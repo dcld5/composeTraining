@@ -19,14 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.decloudius.composetraining.R
 
-/**
- * SettingsScreen lets the user change:
- * 1. Theme (Light / Dark / System Default)
- * 2. Language (English / Indonesian)
- *
- * FilterChip is a nice Material3 component: it looks like a toggleable pill button.
- * The selected chip gets highlighted automatically.
- */
 @Composable
 fun SettingsScreen(
     themeMode: String,
@@ -46,7 +38,6 @@ fun SettingsScreen(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // --- THEME SECTION ---
         Text(
             text = stringResource(R.string.theme),
             style = MaterialTheme.typography.titleLarge
@@ -72,7 +63,6 @@ fun SettingsScreen(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // --- LANGUAGE SECTION ---
         Text(
             text = stringResource(R.string.language),
             style = MaterialTheme.typography.titleLarge
@@ -93,9 +83,6 @@ fun SettingsScreen(
     }
 }
 
-/**
- * A tiny helper chip used for both theme and language toggles.
- */
 @Composable
 private fun ThemeChip(label: String, selected: Boolean, onClick: () -> Unit) {
     FilterChip(
@@ -105,11 +92,6 @@ private fun ThemeChip(label: String, selected: Boolean, onClick: () -> Unit) {
     )
 }
 
-/**
- * A simple custom layout that wraps chips horizontally and wraps to next line if needed.
- * FlowRow is part of Compose Foundation Layout (available since 1.4+).
- * We mark it as @OptIn because in some versions it is still experimental.
- */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun RowWrapped(content: @Composable () -> Unit) {

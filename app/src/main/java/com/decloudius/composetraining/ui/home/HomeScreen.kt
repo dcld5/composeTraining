@@ -34,20 +34,11 @@ import com.decloudius.composetraining.R
 import com.decloudius.composetraining.domain.model.Photo
 import java.io.File
 
-/**
- * HomeScreen is the first tab.
- * It shows a welcome headline and a scrollable grid of all photos taken so far.
- *
- * LazyVerticalGrid displays items in a 2-column grid, similar to a RecyclerView
- * with GridLayoutManager but much simpler in Compose.
- */
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
-    // Collect the photos list. Every time a new photo is saved in the database,
-    // this State automatically updates and the UI recomposes.
+
     val photos by viewModel.photos.collectAsState()
 
-    // Holds the photo the user tapped to review. When non-null the review dialog shows.
     var selectedPhoto by remember { mutableStateOf<Photo?>(null) }
 
     Column(
@@ -55,7 +46,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Welcome headline at the top.
+
         Text(
             text = stringResource(R.string.welcome),
             style = MaterialTheme.typography.headlineMedium,
@@ -72,7 +63,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
         Spacer(modifier = Modifier.height(8.dp))
 
         if (photos.isEmpty()) {
-            // If there are no photos yet, show a friendly empty state.
+
             Box(
                 modifier = Modifier.fillMaxWidth().weight(1f),
                 contentAlignment = Alignment.Center
@@ -84,8 +75,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 )
             }
         } else {
-            // LazyVerticalGrid is like a grid RecyclerView but much simpler.
-            // We pass a key so Compose knows which item is which when the list changes.
+
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -102,9 +92,6 @@ fun HomeScreen(viewModel: HomeViewModel) {
         }
     }
 
-    // Review dialog — shows when the user taps a grid item.
-    // It uses the same AlertDialog pattern as CameraDialog for consistency.
-    // selectedPhoto.let is used to ensure the dialog is only shown if selectedPhoto is not null.
     selectedPhoto?.let { photo ->
         AlertDialog(
             onDismissRequest = { selectedPhoto = null },
@@ -122,7 +109,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 )
             },
             confirmButton = {
-                // selectedPhoto is null when the user taps Save because the dialog is dismissed.
+
                 TextButton(onClick = { selectedPhoto = null }) {
                     Text(stringResource(R.string.save))
                 }
@@ -141,11 +128,6 @@ fun HomeScreen(viewModel: HomeViewModel) {
     }
 }
 
-/**
- * PhotoCard displays a single image from internal storage.
- * It is clickable to open the review dialog.
- * Coil's AsyncImage loads the file automatically and caches it in memory.
- */
 @Composable
 private fun PhotoCard(photo: Photo, onClick: () -> Unit) {
     Card(

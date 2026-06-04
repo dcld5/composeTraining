@@ -2,10 +2,6 @@ package com.decloudius.composetraining.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-/** Color palette for the Family Tree app.
- *  In Material3 you define a few key colors and the system generates tonal variations.
- *  These are warm earth tones to match a "family" feeling. */
-
 val PrimaryLight = Color(0xFF8B5E3C)
 val OnPrimaryLight = Color(0xFFFFFFFF)
 val PrimaryContainerLight = Color(0xFFD4A373)

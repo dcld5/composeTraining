@@ -6,11 +6,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-/**
- * Typography defines text sizes and weights for the whole app.
- * Material3 uses 5 main roles: display, headline, title, body, label.
- * You can customize fonts here (e.g., load a custom FontFamily).
- */
 val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = FontFamily.Default,

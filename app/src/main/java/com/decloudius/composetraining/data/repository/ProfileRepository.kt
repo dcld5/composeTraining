@@ -6,9 +6,6 @@ import com.decloudius.composetraining.domain.model.Profile
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-/**
- * Repository for the single user profile.
- */
 class ProfileRepository(private val profileDao: ProfileDao) {
 
     suspend fun saveProfile(profile: Profile) {

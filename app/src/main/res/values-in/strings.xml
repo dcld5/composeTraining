@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ComposeTraining</string>
+    <string name="welcome">Selamat Datang</string>
+    <string name="home">Beranda</string>
+    <string name="profile">Profil</string>
+    <string name="settings">Pengaturan</string>
+    <string name="login">Masuk</string>
+    <string name="enter_pin">Masukkan PIN 6 digit</string>
+    <string name="use_biometric">Gunakan Biometrik</string>
+    <string name="save">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="take_photo">Ambil Foto</string>
+    <string name="photo_preview">Pratinjau Foto</string>
+    <string name="name">Nama</string>
+    <string name="language">Bahasa</string>
+    <string name="theme">Tema</string>
+    <string name="photos">Foto</string>
+    <string name="pin_error">PIN harus 6 digit</string>
+    <string name="wrong_pin">PIN salah</string>
+    <string name="light">Terang</string>
+    <string name="dark">Gelap</string>
+    <string name="system_default">Default Sistem</string>
+    <string name="english">Inggris</string>
+    <string name="indonesian">Indonesia</string>
+    <string name="my_photos">Foto Saya</string>
+    <string name="no_photos_yet">Belum ada foto</string>
+    <string name="edit_profile">Edit Profil</string>
+    <string name="pick_image">Pilih Gambar</string>
+    <string name="logout">Keluar</string>
+</resources>

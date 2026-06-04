@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- We use a transparent/no-actionbar theme because Jetpack Compose handles all UI itself.
+         The only thing the system sees is this empty window background theme. -->
+    <style name="Theme.ComposeTraining" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>

@@ -6,7 +6,6 @@
     <string name="settings">Settings</string>
     <string name="login">Login</string>
     <string name="enter_pin">Enter 6-digit PIN</string>
-    <string name="use_biometric">Use Biometric</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="take_photo">Take Photo</string>

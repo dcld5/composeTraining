@@ -53,7 +53,7 @@ class DashboardActivity : BaseLocaleActivity() {
                 DashboardScreen(
                     dashboardViewModel = dashboardViewModel,
                     onLogout = {
-                        // Clear saved PIN and biometric flag.
+                        // Clear saved PIN.
                         authRepository.clear()
                         // Go back to login and remove this Activity from the back stack.
                         startActivity(Intent(this, LoginActivity::class.java))

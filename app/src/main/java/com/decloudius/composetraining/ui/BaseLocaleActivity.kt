@@ -10,9 +10,8 @@ import com.decloudius.composetraining.util.LocaleHelper
  * the language the user selected in Settings.
  *
  * We extend FragmentActivity (not AppCompatActivity) because:
- * 1. BiometricPrompt requires a FragmentActivity.
- * 2. FragmentActivity extends ComponentActivity, which supports Compose's setContent { }.
- * 3. We don't need the AppCompat theme overhead.
+ * 1. FragmentActivity extends ComponentActivity, which supports Compose's setContent { }.
+ * 2. We don't need the AppCompat theme overhead.
  */
 abstract class BaseLocaleActivity : FragmentActivity() {
 

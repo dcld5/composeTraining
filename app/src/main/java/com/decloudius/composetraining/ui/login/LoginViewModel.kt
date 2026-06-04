@@ -1,12 +1,10 @@
 package com.decloudius.composetraining.ui.login
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.decloudius.composetraining.data.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 /**
  * LoginViewModel is the BRAIN of the login screen.
@@ -33,10 +31,6 @@ class LoginViewModel(
     private val _isPinSet = MutableStateFlow(false)
     val isPinSet: StateFlow<Boolean> = _isPinSet.asStateFlow()
 
-    /** true if the user turned on biometric login in the past. */
-    private val _isBiometricEnabled = MutableStateFlow(false)
-    val isBiometricEnabled: StateFlow<Boolean> = _isBiometricEnabled.asStateFlow()
-
     /** One-shot event: when true, the Activity should open DashboardActivity. */
     private val _navigateToDashboard = MutableStateFlow(false)
     val navigateToDashboard: StateFlow<Boolean> = _navigateToDashboard.asStateFlow()
@@ -44,7 +38,6 @@ class LoginViewModel(
     init {
         // Check local storage as soon as the ViewModel is created.
         _isPinSet.value = authRepository.hasPin()
-        _isBiometricEnabled.value = authRepository.isBiometricEnabled()
     }
 
     /** Called every time the user types or deletes a digit. */
@@ -80,11 +73,6 @@ class LoginViewModel(
         authRepository.setPin(current)
         _isPinSet.value = true
         _pin.value = ""
-    }
-
-    /** Called by the Activity when the biometric sensor succeeds. */
-    fun onBiometricSuccess() {
-        _navigateToDashboard.value = true
     }
 
     /** Reset the navigation event so it doesn't fire twice. */

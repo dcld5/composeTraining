@@ -50,8 +50,7 @@ import com.decloudius.composetraining.ui.theme.ComposeTrainingTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel,
-    onBiometricClick: () -> Unit = {}
+    viewModel: LoginViewModel
 ) {
     // Collect states from the ViewModel as Compose State objects.
     // Every time the ViewModel updates these values, the UI recomposes automatically.
@@ -69,7 +68,6 @@ fun LoginScreen(
         onPinChange = viewModel::onPinChange,
         onLoginClick = viewModel::onLoginClick,
         onCreatePinClick = viewModel::onCreatePinClick,
-        onBiometricClick = onBiometricClick
     )
 }
 
@@ -86,8 +84,7 @@ fun LoginScreenContent(
     error: String?,
     onPinChange: (String) -> Unit,
     onLoginClick: () -> Unit,
-    onCreatePinClick: () -> Unit,
-    onBiometricClick: () -> Unit = {}
+    onCreatePinClick: () -> Unit
 ) {
     Scaffold(
         topBar = {

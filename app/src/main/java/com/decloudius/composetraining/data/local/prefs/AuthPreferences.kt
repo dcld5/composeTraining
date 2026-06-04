@@ -15,7 +15,6 @@ class AuthPreferences(context: Context) {
 
     companion object {
         private const val KEY_PIN = "user_pin"
-        private const val KEY_BIOMETRIC = "biometric_enabled"
     }
 
     /** Save the 6-digit PIN as a plain string (in a real app you might hash it). */
@@ -31,16 +30,6 @@ class AuthPreferences(context: Context) {
     /** Check if the user has already created a PIN (used on first launch). */
     fun hasPin(): Boolean {
         return getPin() != null
-    }
-
-    /** Enable or disable biometric login option. */
-    fun setBiometricEnabled(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_BIOMETRIC, enabled).apply()
-    }
-
-    /** Check whether biometric login is turned on. */
-    fun isBiometricEnabled(): Boolean {
-        return prefs.getBoolean(KEY_BIOMETRIC, false)
     }
 
     /** Clear everything (useful for logout/reset). */

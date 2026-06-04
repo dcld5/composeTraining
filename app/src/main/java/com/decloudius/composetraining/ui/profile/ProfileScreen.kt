@@ -1,6 +1,7 @@
 package com.decloudius.composetraining.ui.profile
 
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -135,12 +136,9 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
 
         // Little confirmation text after saving.
         if (saved) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Saved!",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodyLarge
-            )
+            Toast.makeText(context,
+                "Saved!",
+                Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -25,6 +25,8 @@ class PhotoRepository(
      * then insert the path into the Room database.
      * Returns the generated database ID.
      */
+
+    // suspend modifier makes this function run on a background thread.
     suspend fun savePhoto(bitmap: Bitmap): Long {
         // Create a unique filename based on the current time.
         val filename = "photo_${System.currentTimeMillis()}.png"
@@ -36,6 +38,16 @@ class PhotoRepository(
         }
 
         // Insert only the path into the database (not the whole image).
+        val entity = PhotoEntity(filePath = file.absolutePath)
+        return photoDao.insertPhoto(entity)
+    }
+
+    // can use this to save a photo with a custom filename
+    suspend fun savePhoto(bitmap: Bitmap, fileName: String): Long {
+        val file = File(context.filesDir, fileName)
+        FileOutputStream(file).use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+        }
         val entity = PhotoEntity(filePath = file.absolutePath)
         return photoDao.insertPhoto(entity)
     }

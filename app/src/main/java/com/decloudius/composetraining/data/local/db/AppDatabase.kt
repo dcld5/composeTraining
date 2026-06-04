@@ -18,7 +18,7 @@ import com.decloudius.composetraining.data.local.db.entity.ProfileEntity
 @Database(
     entities = [PhotoEntity::class, ProfileEntity::class],
     version = 1,
-    exportSchema = false // keep false for simple learning projects
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 

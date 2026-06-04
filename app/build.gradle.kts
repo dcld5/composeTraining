@@ -55,7 +55,6 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    implementation(libs.androidx.biometric)
     implementation(libs.coil.compose)
 
     testImplementation(libs.junit)

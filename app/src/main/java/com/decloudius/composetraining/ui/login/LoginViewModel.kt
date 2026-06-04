@@ -1,12 +1,10 @@
 package com.decloudius.composetraining.ui.login
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.decloudius.composetraining.data.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val authRepository: AuthRepository
@@ -21,16 +19,12 @@ class LoginViewModel(
     private val _isPinSet = MutableStateFlow(false)
     val isPinSet: StateFlow<Boolean> = _isPinSet.asStateFlow()
 
-    private val _isBiometricEnabled = MutableStateFlow(false)
-    val isBiometricEnabled: StateFlow<Boolean> = _isBiometricEnabled.asStateFlow()
-
     private val _navigateToDashboard = MutableStateFlow(false)
     val navigateToDashboard: StateFlow<Boolean> = _navigateToDashboard.asStateFlow()
 
     init {
 
         _isPinSet.value = authRepository.hasPin()
-        _isBiometricEnabled.value = authRepository.isBiometricEnabled()
     }
 
     fun onPinChange(newPin: String) {
@@ -63,10 +57,6 @@ class LoginViewModel(
         authRepository.setPin(current)
         _isPinSet.value = true
         _pin.value = ""
-    }
-
-    fun onBiometricSuccess() {
-        _navigateToDashboard.value = true
     }
 
     fun onNavigationHandled() {

@@ -10,7 +10,6 @@ class AuthPreferences(context: Context) {
 
     companion object {
         private const val KEY_PIN = "user_pin"
-        private const val KEY_BIOMETRIC = "biometric_enabled"
     }
 
     fun setPin(pin: String) {
@@ -23,14 +22,6 @@ class AuthPreferences(context: Context) {
 
     fun hasPin(): Boolean {
         return getPin() != null
-    }
-
-    fun setBiometricEnabled(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_BIOMETRIC, enabled).apply()
-    }
-
-    fun isBiometricEnabled(): Boolean {
-        return prefs.getBoolean(KEY_BIOMETRIC, false)
     }
 
     fun clear() {

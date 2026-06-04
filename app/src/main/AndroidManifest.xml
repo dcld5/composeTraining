@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Biometric permission (normal permission, no runtime request needed) -->
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-
     <!-- Internet permission for Coil image loading (if needed later) -->
     <uses-permission android:name="android.permission.INTERNET" />
 
